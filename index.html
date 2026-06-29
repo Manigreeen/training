@@ -22,20 +22,20 @@
   body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
     font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:760px; margin:0 auto; padding:0 16px;}
+  button{font-family:inherit;}
 
   header.bar{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line);}
   .bar-inner{max-width:760px; margin:0 auto; padding:10px 16px;}
-  .topline{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
-  .title{font-size:13px; font-weight:700;}
+  .topline{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .title{font-size:13px; font-weight:700; cursor:pointer;}
   .title span{color:var(--ink-soft); font-weight:500;}
-  .target{font-family:var(--mono); font-size:11px; color:var(--ink-soft);}
-  .levels{margin-top:10px; display:flex; gap:7px; flex-wrap:wrap; align-items:center;}
+  .title:hover{color:var(--accent);}
+  .levels{margin-top:9px; display:flex; gap:6px; flex-wrap:wrap; align-items:center;}
   .lvlchip{font-family:var(--mono); font-size:11px; border:1px solid var(--line); border-radius:6px;
-    padding:5px 9px; cursor:pointer; background:var(--surface); color:var(--ink); display:flex; gap:6px; align-items:center; min-height:30px;}
+    padding:5px 9px; cursor:pointer; background:var(--surface); color:var(--ink); min-height:30px;}
   .lvlchip:hover{border-color:var(--accent);}
   .lvlchip b{color:var(--ink-soft); font-weight:500;}
   .lvlchip .v{color:var(--accent); font-weight:700;}
-  .lvlhint{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft);}
 
   nav.tabs{position:sticky; top:0; z-index:40; background:var(--bg); border-bottom:1px solid var(--line); overflow-x:auto;}
   nav.tabs ul{display:flex; gap:2px; list-style:none; margin:0 auto; padding:6px 16px; max-width:760px; min-width:max-content;}
@@ -45,127 +45,162 @@
   nav.tabs button.on{background:var(--accent); color:#fff;}
   @media (prefers-color-scheme: dark){ nav.tabs button.on{color:#0f150c;} }
 
-  main{padding:22px 0 90px;}
-  .page{display:none;}
-  .page.on{display:block; animation:fade .2s ease-out;}
+  main{padding:20px 0 90px;}
+  .page{display:none;} .page.on{display:block; animation:fade .2s ease-out;}
   @keyframes fade{from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:none;}}
-  .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:6px; flex-wrap:wrap;}
+  .page-head{display:flex; align-items:baseline; gap:10px; margin-bottom:5px; flex-wrap:wrap;}
   .page-head h2{font-size:21px; font-weight:700; margin:0; letter-spacing:-0.01em;}
   .page-head .meta{font-family:var(--mono); font-size:11px; color:var(--ink-soft);}
-  .page-sub{color:var(--ink-soft); font-size:13.5px; margin:0 0 20px; max-width:68ch;}
+  .page-sub{color:var(--ink-soft); font-size:13px; margin:0 0 18px; max-width:66ch;}
 
-  /* sub-nav (areas / skills jump) */
-  .subnav{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px;}
+  .subnav{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;}
   .subnav button{font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); background:var(--surface);
     border:1px solid var(--line); border-radius:99px; padding:6px 13px; cursor:pointer; min-height:32px;}
   .subnav button:hover{border-color:var(--accent); color:var(--accent);}
   .subnav button.on{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .subnav button.add{border-style:dashed; color:var(--accent);}
   @media (prefers-color-scheme: dark){ .subnav button.on{color:#0f150c;} }
 
-  /* exercise list */
-  .area-sec{display:none;}
-  .area-sec.on{display:block;}
-  .lvl-group{margin-bottom:22px;}
-  .lvl-head{display:flex; align-items:center; gap:10px; margin:0 0 8px; padding-bottom:5px; border-bottom:1px solid var(--line);}
-  .lvl-head .name{font-family:var(--mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft);}
-  .meter{display:flex; gap:3px;}
-  .meter i{width:9px; height:9px; border-radius:2px; background:var(--line);}
-  .meter i.f{background:var(--accent);}
-  .lvl-group.cur .lvl-head{border-color:var(--accent);}
-  .lvl-group.cur .lvl-head .name{color:var(--accent);}
-  .youbadge{font-family:var(--mono); font-size:10px; font-weight:700; color:#fff; background:var(--accent);
-    padding:2px 7px; border-radius:99px;}
-  @media (prefers-color-scheme: dark){ .youbadge{color:#0f150c;} }
-  .setlvl{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-soft);
-    background:none; border:1px solid var(--line); border-radius:6px; padding:4px 9px; cursor:pointer; min-height:28px;}
-  .setlvl:hover{border-color:var(--accent); color:var(--accent);}
-  .ex{display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:7px 2px; border-bottom:1px solid var(--line);}
-  .ex:last-child{border-bottom:none;}
-  .ex .exn{font-size:14.5px; font-weight:500; min-width:0;}
-  .ex .exnote{font-size:12.5px; color:var(--ink-soft); font-family:var(--mono); text-align:right; flex-shrink:0; max-width:48%;}
-  .lvl-group.cur .ex{background:var(--accent-bg);}
-  .lvl-group.cur .ex .exn{color:var(--accent-ink);}
+  /* generic small action buttons */
+  .acts{display:flex; gap:1px; flex-shrink:0;}
+  .ib{font-family:var(--mono); font-size:13px; background:none; border:none; color:var(--ink-soft);
+    cursor:pointer; padding:4px 7px; min-height:32px; line-height:1; border-radius:5px;}
+  .ib:hover{color:var(--accent);} .ib.d:hover{color:var(--warn);}
+  .addbtn{font-family:var(--mono); font-size:12px; color:var(--accent); background:none;
+    border:1px dashed var(--line); border-radius:7px; padding:9px; width:100%; cursor:pointer; margin-top:6px;}
+  .addbtn:hover{border-color:var(--accent); background:var(--accent-bg);}
 
-  /* skills ladders */
-  .skill{margin-bottom:30px;}
+  /* exercises */
+  .area-sec{display:none;} .area-sec.on{display:block;}
+  .lvl-group{margin-bottom:18px;}
+  .lvl-head{display:flex; align-items:center; gap:10px; margin:0 0 6px; padding-bottom:5px; border-bottom:1px solid var(--line);}
+  .lvl-head .name{font-family:var(--mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft);}
+  .meter{display:flex; gap:3px;} .meter i{width:8px; height:8px; border-radius:2px; background:var(--line);} .meter i.f{background:var(--accent);}
+  .lvl-group.cur .lvl-head{border-color:var(--accent);} .lvl-group.cur .lvl-head .name{color:var(--accent);}
+  .youbadge{font-family:var(--mono); font-size:10px; font-weight:700; color:#fff; background:var(--accent); padding:2px 7px; border-radius:99px;}
+  @media (prefers-color-scheme: dark){ .youbadge{color:#0f150c;} }
+  .setlvl{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); background:none; border:1px solid var(--line); border-radius:6px; padding:4px 9px; cursor:pointer; min-height:28px;}
+  .setlvl:hover{border-color:var(--accent); color:var(--accent);}
+  .ex{display:flex; align-items:center; gap:8px; padding:5px 2px; border-bottom:1px solid var(--line);}
+  .ex:last-child{border-bottom:none;}
+  .ex .exn{font-size:14px; font-weight:500; min-width:0; flex:1;}
+  .ex .exnote{font-size:12px; color:var(--ink-soft); font-family:var(--mono); flex-shrink:1; min-width:0; text-align:right;}
+  .lvl-group.cur .ex{background:var(--accent-bg);} .lvl-group.cur .ex .exn{color:var(--accent-ink);}
+
+  /* skills */
   .skill-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px;}
   .skill-head h3{font-size:18px; font-weight:700; margin:0; letter-spacing:-0.01em;}
   .skill-head .tag{font-family:var(--mono); font-size:10.5px; color:var(--accent); background:var(--accent-bg); padding:2px 8px; border-radius:5px;}
-  .skill .prereq{font-size:12.5px; color:var(--ink-soft); margin:0 0 14px; font-style:italic;}
+  .skill-head .acts{margin-left:auto;}
+  .prereq{font-size:12.5px; color:var(--ink-soft); margin:0 0 14px; font-style:italic;}
   .ladder{position:relative; margin-left:13px; padding-left:24px; border-left:2px solid var(--line);}
-  .step{position:relative; padding:9px 0; cursor:pointer;}
-  .step::before{content:''; position:absolute; left:-31px; top:14px; width:13px; height:13px; border-radius:99px;
-    background:var(--surface); border:2px solid var(--line);}
+  .step{position:relative; padding:7px 0; display:flex; align-items:flex-start; gap:4px;}
+  .step .body{cursor:pointer; flex:1; min-width:0;}
+  .step::before{content:''; position:absolute; left:-31px; top:13px; width:13px; height:13px; border-radius:99px; background:var(--surface); border:2px solid var(--line);}
   .step:hover::before{border-color:var(--accent);}
   .step.done::before{background:var(--accent); border-color:var(--accent);}
   .step.cur::before{background:var(--accent); border-color:var(--accent); box-shadow:0 0 0 4px var(--accent-bg);}
-  .step .st-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px;}
-  .step .st-name{font-size:14.5px; font-weight:500;}
-  .step .st-n{font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-right:8px;}
-  .step .st-target{font-family:var(--mono); font-size:12px; color:var(--ink-soft); white-space:nowrap; flex-shrink:0;}
+  .step .st-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .step .st-name{font-size:14px; font-weight:500;} .step .st-n{font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-right:8px;}
+  .step .st-target{font-family:var(--mono); font-size:12px; color:var(--ink-soft); white-space:nowrap;}
   .step.cur .st-name{color:var(--accent); font-weight:700;}
-  .step .here{display:none; font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); margin-top:2px;}
+  .step .here{display:none; font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent); margin-top:1px;}
   .step.cur .here{display:block;}
-  .skill .support{font-size:12px; color:var(--ink-soft); margin:12px 0 0; padding-left:13px;}
+  .step .acts{flex-shrink:0; margin-top:2px;}
+  .support{font-size:12px; color:var(--ink-soft); margin:12px 0 0; padding-left:13px;}
 
   /* split days */
-  .day{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin-bottom:14px;}
-  .day-top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:4px;}
-  .day-top .dname{font-family:var(--mono); font-size:12px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.04em;}
-  .day-top .dfocus{font-size:16px; font-weight:700; letter-spacing:-0.01em;}
-  .liveline{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 14px;}
-  .pill{font-family:var(--mono); font-size:11px; border:1px solid var(--line); border-radius:6px; padding:5px 9px; background:var(--bg);}
-  .pill b{color:var(--ink-soft); font-weight:500;}
-  .pill .v{color:var(--accent); font-weight:700;}
-  .block-lab{font-family:var(--mono); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
-    color:var(--ink-soft); margin:14px 0 7px;}
-  .skillblock{font-size:13.5px; line-height:1.6; background:var(--accent-bg); border-radius:7px; padding:11px 13px; color:var(--accent-ink);}
+  .habit{font-size:13px; line-height:1.6; background:var(--accent-bg); color:var(--accent-ink); border-radius:8px; padding:11px 14px; margin-bottom:16px;}
+  .habit b{color:var(--accent);}
+  details.day{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:10px; overflow:hidden;}
+  details.day[open]{border-color:var(--accent);}
+  summary.day-sum{cursor:pointer; list-style:none; padding:14px 16px; display:flex; align-items:center; gap:10px;}
+  summary.day-sum::-webkit-details-marker{display:none;}
+  summary.day-sum::before{content:'›'; font-family:var(--mono); font-size:18px; color:var(--ink-soft); transition:transform .15s; flex-shrink:0;}
+  details.day[open] summary.day-sum::before{transform:rotate(90deg); color:var(--accent);}
+  .sum-main{min-width:0; flex:1;}
+  .sum-name{font-family:var(--mono); font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.04em;}
+  .sum-focus{font-size:15px; font-weight:700; letter-spacing:-0.01em;}
+  .sum-live{display:flex; flex-wrap:wrap; gap:5px; margin-top:5px;}
+  .lp{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); background:var(--bg); border:1px solid var(--line); border-radius:5px; padding:2px 7px;}
+  .lp b{color:var(--accent); font-weight:700;}
+  .day-body{padding:0 16px 16px;}
+  .block-lab{font-family:var(--mono); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); margin:14px 0 6px; display:flex; align-items:center; gap:8px;}
+  .skillblock{font-size:13px; line-height:1.55; background:var(--accent-bg); border-radius:7px; padding:10px 12px; color:var(--accent-ink);}
   table{width:100%; border-collapse:collapse; font-size:13.5px;}
-  th,td{text-align:left; padding:8px 4px; border-bottom:1px solid var(--line);}
-  th{font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase;}
+  th,td{text-align:left; padding:7px 4px; border-bottom:1px solid var(--line);}
+  th{font-family:var(--mono); font-size:10px; font-weight:700; color:var(--ink-soft); text-transform:uppercase;}
   td.num,th.num{font-family:var(--mono); text-align:right; white-space:nowrap; font-size:12.5px;}
+  td.act{width:1%; white-space:nowrap; text-align:right;}
   tr:last-child td{border-bottom:none;}
-  .nopark{font-size:12px; color:var(--ink-soft); margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); font-family:var(--mono);}
+  .nopark{font-size:12px; color:var(--ink-soft); margin:14px 0 0; padding-top:10px; border-top:1px dashed var(--line); font-family:var(--mono);}
   .nopark b{color:var(--warn); font-weight:700;}
+  .day-tools{display:flex; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line);}
+  .day-tools button{font-family:var(--mono); font-size:11px; color:var(--ink-soft); background:none; border:1px solid var(--line); border-radius:6px; padding:5px 11px; cursor:pointer;}
+  .day-tools button:hover{border-color:var(--accent); color:var(--accent);} .day-tools button.d:hover{border-color:var(--warn); color:var(--warn);}
 
-  .panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin-bottom:16px;}
-  .panel h3{font-size:12px; font-family:var(--mono); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--accent); margin:0 0 13px;}
-  .panel p{margin:0 0 11px; font-size:14px;} .panel p:last-child{margin-bottom:0;}
-  .panel ul{margin:0; padding-left:18px; font-size:14px; line-height:1.7;}
-  .panel ul li{margin-bottom:5px;}
-  .lead{font-family:var(--mono); color:var(--accent); font-weight:700;}
+  /* armar */
+  .tray{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-bottom:18px;}
+  .tray h3{font-family:var(--mono); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--accent); margin:0 0 12px;}
+  .tray .nm{width:100%; font:inherit; font-size:15px; font-weight:700; padding:8px 11px; border:1px solid var(--line); border-radius:7px; background:var(--bg); color:var(--ink); margin-bottom:12px;}
+  .tray .nm:focus{outline:none; border-color:var(--accent);}
+  .trow{display:flex; align-items:center; gap:10px; padding:7px 2px; border-bottom:1px solid var(--line);}
+  .trow:last-of-type{border-bottom:none;}
+  .trow .tl{flex:1; min-width:0;} .trow .tl .tn{font-size:14px; font-weight:500;} .trow .tl .ts{font-family:var(--mono); font-size:11px; color:var(--ink-soft);}
+  .trow .tk{font-family:var(--mono); font-size:9.5px; font-weight:700; padding:2px 6px; border-radius:4px; background:var(--accent-bg); color:var(--accent-ink); text-transform:uppercase;}
+  .tray-empty{font-size:13px; color:var(--ink-soft); font-style:italic; padding:6px 0;}
+  .tray-actions{display:flex; gap:8px; margin-top:14px;}
+  .btn{font-family:var(--mono); font-size:12px; padding:9px 15px; border-radius:7px; cursor:pointer; border:1px solid var(--line); background:var(--surface); color:var(--ink); min-height:38px;}
+  .btn.pri{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .btn.pri:disabled{opacity:.45; cursor:not-allowed;}
+  .btn.gho:hover{border-color:var(--warn); color:var(--warn);}
+  @media (prefers-color-scheme: dark){ .btn.pri{color:#0f150c;} }
+  .saved{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px; margin-bottom:10px;}
+  .saved-top{display:flex; align-items:center; gap:10px;}
+  .saved-top .sn{font-size:15px; font-weight:700; flex:1;}
+  .saved ul{margin:8px 0 0; padding-left:18px; font-size:13px; color:var(--ink-soft); line-height:1.6;}
 
-  .transfer{display:flex; gap:10px; padding:9px 0; border-bottom:1px solid var(--line); align-items:baseline;}
-  .transfer:last-child{border-bottom:none;}
-  .transfer .arr{font-family:var(--mono); font-size:13px; flex:1;}
-  .transfer .deg{font-family:var(--mono); font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:5px; white-space:nowrap;}
-  .deg.hi{background:var(--accent-bg); color:var(--accent-ink);}
-  .deg.lo{background:var(--bg); color:var(--ink-soft); border:1px solid var(--line);}
-  .deg.no{background:rgba(181,81,47,.12); color:var(--warn);}
-
-  .note{font-size:12.5px; color:var(--ink-soft); margin:14px 0 0; line-height:1.6;}
-  footer{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
-    font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); line-height:1.7;}
-  footer .reset{font-family:var(--mono); font-size:11px; color:var(--ink-soft); background:none;
-    border:1px solid var(--line); border-radius:6px; padding:5px 11px; cursor:pointer; margin-bottom:12px;}
+  .panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; margin-bottom:14px;}
+  .panel h3{font-size:12px; font-family:var(--mono); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--accent); margin:0 0 12px;}
+  .panel ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65;} .panel ul li{margin-bottom:4px;}
+  .transfer{display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); align-items:baseline;} .transfer:last-child{border-bottom:none;}
+  .transfer .arr{font-family:var(--mono); font-size:12.5px; flex:1;}
+  .deg{font-family:var(--mono); font-size:10px; font-weight:700; padding:2px 8px; border-radius:5px; white-space:nowrap;}
+  .deg.hi{background:var(--accent-bg); color:var(--accent-ink);} .deg.lo{background:var(--bg); color:var(--ink-soft); border:1px solid var(--line);} .deg.no{background:rgba(181,81,47,.12); color:var(--warn);}
+  details.fold{margin-bottom:14px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); overflow:hidden;}
+  details.fold summary{cursor:pointer; list-style:none; padding:13px 16px; font-family:var(--mono); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--accent); display:flex; align-items:center; gap:8px;}
+  details.fold summary::-webkit-details-marker{display:none;} details.fold summary::before{content:'›'; font-size:16px; color:var(--ink-soft); transition:transform .15s;}
+  details.fold[open] summary::before{transform:rotate(90deg); color:var(--accent);}
+  details.fold .fc{padding:0 16px 16px;}
+  .note{font-size:12px; color:var(--ink-soft); margin:10px 0 0; line-height:1.55;}
+  footer{margin-top:26px; padding-top:14px; border-top:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); line-height:1.7;}
+  footer .reset{font-family:var(--mono); font-size:11px; color:var(--ink-soft); background:none; border:1px solid var(--line); border-radius:6px; padding:5px 11px; cursor:pointer; margin-bottom:10px;}
   footer .reset:hover{border-color:var(--warn); color:var(--warn);}
 
-  dialog{border:1px solid var(--line); border-radius:var(--radius); padding:0; background:var(--surface); color:var(--ink); max-width:360px; width:calc(100% - 32px);}
+  dialog{border:1px solid var(--line); border-radius:var(--radius); padding:0; background:var(--surface); color:var(--ink); max-width:460px; width:calc(100% - 32px);}
   dialog::backdrop{background:rgba(0,0,0,.45);}
-  .modal-in{padding:20px;}
-  .modal-in h3{font-family:var(--sans); font-size:16px; font-weight:700; margin:0 0 14px;}
-  .lvl-opts{display:flex; flex-direction:column; gap:6px;}
-  .lvl-opts button{font:inherit; font-family:var(--mono); font-size:13px; text-align:left; padding:10px 13px;
-    border:1px solid var(--line); border-radius:7px; background:var(--bg); color:var(--ink); cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
-  .lvl-opts button:hover{border-color:var(--accent); color:var(--accent);}
-  .lvl-opts button.sel{background:var(--accent); color:#fff; border-color:var(--accent);}
-  @media (prefers-color-scheme: dark){ .lvl-opts button.sel{color:#0f150c;} }
+  .modal-in{padding:20px;} .modal-in h3{font-family:var(--sans); font-size:16px; font-weight:700; margin:0 0 16px;}
+  .fld{display:flex; flex-direction:column; gap:5px; margin-bottom:13px;}
+  .fld>label{font-family:var(--mono); font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.04em;}
+  .fld input,.fld textarea,.fld select{font:inherit; font-size:14px; padding:9px 11px; border:1px solid var(--line); border-radius:7px; background:var(--bg); color:var(--ink); width:100%;}
+  .fld textarea{resize:vertical; line-height:1.5; min-height:64px;}
+  .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 1px var(--accent);}
+  .checks{display:flex; flex-wrap:wrap; gap:8px;}
+  .checks label{display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:13px; border:1px solid var(--line); border-radius:6px; padding:6px 10px; cursor:pointer;}
+  .checks input{width:16px; height:16px; accent-color:var(--accent);}
+  .modal-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:6px;}
+  .modal-actions button{font-family:var(--mono); font-size:13px; padding:8px 16px; border-radius:7px; cursor:pointer; border:1px solid var(--line); background:var(--bg); color:var(--ink);}
+  .modal-actions .save{background:var(--accent); color:#fff; border-color:var(--accent);}
+  @media (prefers-color-scheme: dark){ .modal-actions .save{color:#0f150c;} }
+
+  .toast{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--ink); color:var(--bg); font-family:var(--mono); font-size:12px; padding:11px 17px; border-radius:8px; opacity:0; transition:opacity .2s; z-index:100; pointer-events:none;}
+  .toast.show{opacity:1;}
 
   @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
   @media print{
-    nav.tabs,.subnav,.setlvl,.levels .lvlhint,footer .reset,dialog{display:none!important;}
-    header.bar{position:static;}
-    .page{display:block!important;} .area-sec{display:block!important;}
+    nav.tabs,.subnav,.acts,.setlvl,.addbtn,.day-tools,footer .reset,dialog,.tray-actions{display:none!important;}
+    header.bar{position:static;} .page{display:block!important;} .area-sec{display:block!important;}
+    details.day,details.fold{border-color:#ccc;} details[open]{} .day-body,.fc{display:block!important;}
     body{background:#fff; color:#000;} main{padding-top:10px;}
   }
 </style>
@@ -175,8 +210,7 @@
 <header class="bar">
   <div class="bar-inner">
     <div class="topline">
-      <div class="title">Training <span>· calistenia · lean bulk · 5 días</span></div>
-      <div class="target">skill block primero · sin parque = fallback</div>
+      <div class="title" data-act="edit-title" id="hdr-title"></div>
     </div>
     <div class="levels" id="levels"></div>
   </div>
@@ -184,356 +218,347 @@
 
 <nav class="tabs">
   <ul>
-    <li><button data-tab="split" class="on">Split</button></li>
-    <li><button data-tab="ejercicios">Ejercicios</button></li>
-    <li><button data-tab="skills">Skills</button></li>
-    <li><button data-tab="fundamentos">Fundamentos</button></li>
-    <li><button data-tab="guia">Guía</button></li>
+    <li><button data-act="tab" data-tab="split" class="on">Split</button></li>
+    <li><button data-act="tab" data-tab="ejercicios">Ejercicios</button></li>
+    <li><button data-act="tab" data-tab="skills">Skills</button></li>
+    <li><button data-act="tab" data-tab="armar">Armar</button></li>
+    <li><button data-act="tab" data-tab="guia">Guía</button></li>
   </ul>
 </nav>
 
 <main class="wrap">
-
-  <!-- SPLIT -->
   <section class="page on" id="split">
-    <div class="page-head"><h2>Split semanal</h2><span class="meta">5 días · skill primero</span></div>
-    <p class="page-sub">Cada día: skill block (nervioso fresco, repetition method) y luego hipertrofia. Las pastillas verdes muestran tu nivel/paso actual, jalados de Ejercicios y Skills.</p>
-
-    <div class="panel">
-      <h3>Hábito diario · ~5 min al levantarte</h3>
-      <p><span class="lead">Handstand (GTG):</span> 3 intentos de tu step actual, fresco, nunca al fallo. Frecuencia &gt; intensidad.</p>
-      <p><span class="lead">Volumen base:</span> 15 pull-ups totales · 20 push-ups (tu variante) · 30s hollow body hold.</p>
-    </div>
-
+    <div class="page-head"><h2>Split semanal</h2><span class="meta">tocá un día para abrir</span></div>
+    <p class="page-sub">Skill primero (fresco), hipertrofia después. Cada día muestra tu nivel/paso en la cabecera.</p>
+    <div class="habit" id="habit"></div>
     <div id="days"></div>
-
-    <div class="panel">
-      <h3>Estructura de cada sesión</h3>
-      <table>
-        <tr><th>Bloque</th><th class="num">Duración</th><th>Método · descanso</th></tr>
-        <tr><td>Calentamiento</td><td class="num">5–10 min</td><td>movilidad + escápulas · —</td></tr>
-        <tr><td>Skill block</td><td class="num">20–30 min</td><td>repetition · 5–8 min</td></tr>
-        <tr><td>Hipertrofia</td><td class="num">20–25 min</td><td>interval 8–20 reps · 1–3 min</td></tr>
-        <tr><td>Vuelta calma</td><td class="num">5 min</td><td>stretching estático · —</td></tr>
-      </table>
-      <p class="note"><b>Sáb / Dom:</b> descanso activo (stretching, caminar). El hábito diario sigue.</p>
-    </div>
-
-    <div class="panel">
-      <h3>Modo sin parque</h3>
-      <table>
-        <tr><th>Día</th><th>Impacto</th><th>Solución</th></tr>
-        <tr><td>Lun · Push</td><td>ninguno</td><td>suelo + silla/banco</td></tr>
-        <tr><td>Mar · Pull</td><td>alto</td><td>inverted rows (mesa) + bandas. Sin nada → swap a Push+Core</td></tr>
-        <tr><td>Mié · Core+Legs</td><td>bajo</td><td>bar exercises → floor core</td></tr>
-        <tr><td>Jue · Push</td><td>ninguno</td><td>igual sin barras</td></tr>
-        <tr><td>Vie · Pull</td><td>alto</td><td>igual que martes</td></tr>
-      </table>
-      <p class="note">La semana nunca se rompe: Push y Core+Legs son 100% libres; los Pull tienen fallback.</p>
-    </div>
+    <button class="addbtn" data-act="day-add" type="button">+ agregar día</button>
+    <details class="fold" style="margin-top:14px;">
+      <summary>Estructura de cada sesión</summary>
+      <div class="fc"><table>
+        <tr><th>Bloque</th><th class="num">Duración</th><th>Método</th></tr>
+        <tr><td>Calentamiento</td><td class="num">5–10′</td><td>movilidad + escápulas</td></tr>
+        <tr><td>Skill block</td><td class="num">20–30′</td><td>repetition · desc 5–8′</td></tr>
+        <tr><td>Hipertrofia</td><td class="num">20–25′</td><td>8–20 reps · desc 1–3′</td></tr>
+        <tr><td>Vuelta calma</td><td class="num">5′</td><td>stretching</td></tr>
+      </table><p class="note">Sáb/Dom: descanso activo. El hábito diario sigue.</p></div>
+    </details>
   </section>
 
-  <!-- EJERCICIOS -->
   <section class="page" id="ejercicios">
-    <div class="page-head"><h2>Ejercicios</h2><span class="meta">por área · de fácil a difícil</span></div>
-    <p class="page-sub">Cada área es una escalera de Beginner a Extreme. Subís de nivel cuando completás todos los sets al tope del rango con forma limpia, 2 semanas seguidas. Marcá tu nivel actual para que el split lo refleje.</p>
+    <div class="page-head"><h2>Ejercicios</h2><span class="meta">por área · fácil → difícil</span></div>
+    <p class="page-sub">Subís de nivel al completar todos los sets al tope del rango con forma limpia, 2 semanas. Marcá tu nivel para que el split lo refleje. Tocá + para sumar a Armar.</p>
     <div class="subnav" id="area-nav"></div>
     <div id="areas"></div>
   </section>
 
-  <!-- SKILLS -->
   <section class="page" id="skills">
-    <div class="page-head"><h2>Skills</h2><span class="meta">progresiones · trabajá un paso a la vez</span></div>
-    <p class="page-sub">Cada skill es una escalera. Trabajás solo el paso actual hasta dominarlo (3 sets sólidos, forma limpia). Pasar de paso puede tomar semanas o meses. Tocá un paso para marcar dónde estás.</p>
+    <div class="page-head"><h2>Skills</h2><span class="meta">una a la vez</span></div>
+    <p class="page-sub">Elegí una skill. Trabajás solo el paso actual hasta dominarlo; tocá un paso para marcar dónde estás.</p>
     <div class="subnav" id="skill-nav"></div>
-    <div id="skills-list"></div>
+    <div id="skill-view"></div>
   </section>
 
-  <!-- FUNDAMENTOS -->
-  <section class="page" id="fundamentos">
-    <div class="page-head"><h2>Fundamentos</h2><span class="meta">antes de todo</span></div>
-    <p class="page-sub">Sin esta base, las progresiones y skills no tienen dónde apoyarse. El estándar antes de meterse en serio con skills: ~10 pull-ups y 15 dips estrictos.</p>
-    <div class="panel">
-      <h3>Base mínima</h3>
-      <table id="fund-table"></table>
-    </div>
-    <div class="panel">
-      <h3>Calentamiento estándar</h3>
-      <ul>
-        <li>Wrist rotations 360° · 1 min cada lado</li>
-        <li>Scapular shrugs · 2×10</li>
-        <li>Scapular push-ups · 2×8</li>
-        <li>Hollow body hold · 2×30s</li>
-        <li>Joint circles · hombros, codos, muñecas</li>
-      </ul>
-    </div>
-    <div class="panel">
-      <h3>Cómo progresar</h3>
-      <ul>
-        <li>Completás todos los sets al tope del rango con forma limpia, 2 semanas → subís variante.</li>
-        <li>No llegás al mínimo del rango → bajás una variante o la usás de calentamiento.</li>
-        <li>Revisión mensual del split completo.</li>
-        <li>Registro mínimo: anotá reps y variante de cada sesión. Sin medición no hay mejora.</li>
-      </ul>
-    </div>
+  <section class="page" id="armar">
+    <div class="page-head"><h2>Armar sesión</h2><span class="meta">tu sesión libre</span></div>
+    <p class="page-sub">Sumá ejercicios o skills desde sus pestañas (botón +), nombrala y guardala. Tus sesiones conviven con el split.</p>
+    <div class="tray" id="tray"></div>
+    <div id="saved"></div>
   </section>
 
-  <!-- GUIA -->
   <section class="page" id="guia">
-    <div class="page-head"><h2>Guía</h2><span class="meta">por qué funciona</span></div>
-    <p class="page-sub">La lógica de programación detrás del split, y qué skill transfiere a cuál.</p>
-
+    <div class="page-head"><h2>Guía</h2><span class="meta">base + por qué</span></div>
+    <div class="panel">
+      <h3>Fundamentos · antes de skills</h3>
+      <table>
+        <tr><th>Ejercicio</th><th class="num">Target</th></tr>
+        <tr><td>Push-up estricto</td><td class="num">3–5 × 8–15</td></tr>
+        <tr><td>Pull-up estricto</td><td class="num">25–50 total</td></tr>
+        <tr><td>Scapular pull/push-up</td><td class="num">2–3 × 8–12</td></tr>
+        <tr><td>Hollow body hold</td><td class="num">60–120s</td></tr>
+        <tr><td>Active hang / Support hold</td><td class="num">20–40s</td></tr>
+      </table>
+      <p class="note">Base para skills: ~10 pull-ups y 15 dips estrictos. Calentamiento: wrist rotations, scapular shrugs/push-ups, hollow, joint circles.</p>
+    </div>
     <div class="panel">
       <h3>Principios</h3>
       <ul>
-        <li>En calistenia fuerza e hipertrofia van juntas: no se separan del todo.</li>
-        <li>La progresión es <b>mover el centro de gravedad</b>, no subir peso.</li>
-        <li>Las <b>straight-arm skills</b> (planche, front lever) aíslan tendones del hombro, no músculos: <b>no transfieren</b> a push-ups ni pull-ups normales. Hay que entrenarlas específicamente.</li>
-        <li>Construí la base de empuje y tracción <b>antes</b> de meterte en straight-arm.</li>
-        <li>Planche: empezás desde planche lean. Es el escalón 1 sin excepción.</li>
+        <li>Fuerza e hipertrofia van juntas; la progresión es <b>mover el centro de gravedad</b>, no subir peso.</li>
+        <li><b>Straight-arm skills</b> (planche, front lever) aíslan tendones, <b>no transfieren</b> a push/pull normales: entrenalas aparte.</li>
+        <li>Construí base de empuje/tracción antes de straight-arm. Planche siempre empieza en planche lean.</li>
       </ul>
     </div>
-
     <div class="panel">
-      <h3>Transferencias entre skills</h3>
+      <h3>Transferencias</h3>
       <div class="transfer"><span class="arr">Weighted pull-ups → muscle-up + front lever</span><span class="deg hi">ALTA</span></div>
       <div class="transfer"><span class="arr">Weighted pull-ups → planche</span><span class="deg lo">BAJA</span></div>
       <div class="transfer"><span class="arr">Deep HSPU → deltoides → planche</span><span class="deg hi">AYUDA</span></div>
-      <div class="transfer"><span class="arr">Planche + front lever en volumen alto</span><span class="deg no">NO JUNTAS</span></div>
-      <p class="note">Si subís tu weighted pull-up (10→20kg) tu muscle-up mejora solo; (35→45kg) tu front lever mejora aunque no lo entrenes. Planche y front lever juntas saturan el hombro: separalas.</p>
+      <div class="transfer"><span class="arr">Planche + front lever, volumen alto</span><span class="deg no">NO JUNTAS</span></div>
     </div>
-
-    <div class="panel">
-      <h3>Canales de referencia</h3>
-      <table>
-        <tr><th>Canal</th><th>Mejor para</th></tr>
-        <tr><td>FitnessFAQs</td><td>Skills science-based, splits, programación</td></tr>
-        <tr><td>Calisthenic Movement</td><td>Técnica, injury prevention, step-by-step</td></tr>
-        <tr><td>Hybrid Calisthenics</td><td>Fundamentos, accesible, hábitos diarios</td></tr>
-        <tr><td>School of Calisthenics</td><td>Tutoriales beginner → advanced</td></tr>
-        <tr><td>Caliversity</td><td>Programación, hypertrophy vs strength</td></tr>
-        <tr><td>THENX</td><td>Rutinas, programas</td></tr>
-      </table>
-    </div>
-
+    <details class="fold">
+      <summary>Canales de referencia</summary>
+      <div class="fc"><table>
+        <tr><td>FitnessFAQs</td><td>skills science-based, splits</td></tr>
+        <tr><td>Calisthenic Movement</td><td>técnica, injury prevention</td></tr>
+        <tr><td>Hybrid Calisthenics</td><td>fundamentos, hábitos</td></tr>
+        <tr><td>Caliversity</td><td>programación, hipertrofia</td></tr>
+        <tr><td>THENX · School of Calisthenics</td><td>rutinas, tutoriales</td></tr>
+      </table></div>
+    </details>
     <footer>
-      <button class="reset" id="reset-state" type="button">restablecer mi nivel y pasos</button>
-      <div>Training catalog · calistenia · lean bulk 66kg. Tu nivel y pasos se guardan en este navegador (localStorage).</div>
+      <button class="reset" data-act="restore" type="button">restaurar valores por defecto</button>
+      <div>Tu nivel, pasos, ediciones y sesiones se guardan en este navegador (localStorage).</div>
     </footer>
   </section>
-
 </main>
 
-<dialog id="lvl-dialog">
-  <div class="modal-in">
-    <h3 id="dlg-title">Tu nivel</h3>
-    <div class="lvl-opts" id="dlg-opts"></div>
-  </div>
-</dialog>
+<dialog id="dlg"><form method="dialog" class="modal-in" id="dlg-form"></form></dialog>
+<div class="toast" id="toast"></div>
 
 <script>
+"use strict";
 const LEVELS = ['Beginner','Basic','Intermediate','Advanced','Extreme'];
+const uid = () => Math.random().toString(36).slice(2,8);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-const AREAS = {
-  push: { name:'Push · Pecho', ex:{
-    Beginner:[['Push-up estándar',''],['Wide push-up','más pectoral']],
-    Basic:[['Diamond push-up','más tríceps'],['Plyo push-up','explosivo, manos despegan'],['Decline push-up','pies elevados, pecho alto'],['Dip en paralelas','chest + triceps'],['Pike push-up','hombros, prep HSPU']],
-    Intermediate:[['Archer push-up','unilateral progresivo'],['Typewriter push-up','archer continuo, deslizar lateral'],['Pseudo planche push-up','manos hacia los pies'],['Elevated pike push-up','mayor ROM'],['Hand holders push-up','paralelas, ROM profundo'],['Korean dip','hombro posterior']],
-    Advanced:[['One arm push-up','pushing unilateral'],['90 degree push-up','pseudo + planche lean']],
-    Extreme:[['Wall handstand push-up',''],['HSPU libre','objetivo largo plazo']],
-  }},
-  pull: { name:'Pull · Espalda', ex:{
-    Beginner:[['Dead hang activo','hombros activos abajo'],['Scapular pull-up','depresión sin doblar codo'],['Band pull-apart','retractores, manguito']],
-    Basic:[['Australian pull-up','row bajo barra'],['Pull-up pronado','agarre ancho/medio'],['Chin-up supinado','más bíceps, más fácil'],['Neutral grip pull-up','']],
-    Intermediate:[['Explosive pull-up','chest-to-bar, máx velocidad'],['Plyo pull-up','soltar la barra arriba'],['Feet elevated rows','más difícil que australian'],['Archer pull-up','unilateral progresivo'],['L-sit pull-up','core + pull'],['Typewriter pull-up','control lateral']],
-    Advanced:[['Weighted pull-up','con peso añadido'],['Chest-to-bar pull-up','pecho toca la barra']],
-    Extreme:[['One arm chin-up (negativa)','eccentric primero'],['One arm chin-up (libre)','objetivo máximo de pull']],
-  }},
-  core: { name:'Core', ex:{
-    Beginner:[['Plank','base isométrica'],['Side plank','estabilidad lateral'],['Dead bug','control lumbar'],['Hollow body hold','base de FL, planche, handstand']],
-    Basic:[['Hollow body rocks','progresión del hold'],['Toes to bar','piernas rectas'],['Butterfly sit-up','pies en mariposa'],['Alternating tuck crunch','rodillas al pecho alterno'],['Twisting tuck crunch','rotación + rodilla opuesta'],['V-ups','core completo'],['Abs scissors','tijeras rasantes'],['Hanging knee raise','rodillas al pecho'],['Bar leg raises half','piernas a 90°'],['Reverse extensions','cadera elevada']],
-    Intermediate:[['Bar leg raises full','piernas rectas arriba'],['Bar side tucks','rodillas laterales'],['L-sit','core + flexores + hombros'],['Tuck L-sit','versión más fácil'],['L-sit reps','dinámico'],['Pull the rope','desde hollow'],['Pike compression','10–20 controladas']],
-    Advanced:[['Dragon flag','de los más difíciles de suelo']],
-    Extreme:[['V-sit','piernas por encima de caderas']],
-  }},
-  legs: { name:'Legs', ex:{
-    Beginner:[['Sentadilla','forma antes que reps'],['Lunge / Reverse lunge','estático o alterno'],['Calf raise bilateral','lento, rango completo']],
-    Basic:[['Reverse Nordic curl','protege rodillas'],['Jump squat','explosividad']],
-    Intermediate:[['Bulgarian split squat','pie trasero elevado'],['Single leg deadlift','control de cadera'],['Nordic curl','bajar controlado'],['Pistol squat (asistido)','progresión clave'],['Box / Broad jump','potencia'],['Calf raise unilateral','']],
-    Advanced:[['Pistol squat (libre)','objetivo de piernas']],
-    Extreme:[['Dragon squat','el más difícil de lower body']],
-  }},
-};
+/* ---------- seed (defaults) ---------- */
+function SEED(){ return {
+  title:'Training', subtitle:'calistenia · lean bulk · 5 días',
+  habit:'<b>Hábito diario (~5′):</b> handstand GTG 3 intentos del step (fresco, sin fallo) · 15 pull-ups · 20 push-ups · 30s hollow.',
+  areas:{
+    push:{name:'Push · Pecho', ex:{
+      Beginner:[['Push-up estándar',''],['Wide push-up','más pectoral']],
+      Basic:[['Diamond push-up','tríceps'],['Plyo push-up','explosivo'],['Decline push-up','pies elevados'],['Dip en paralelas','chest+triceps'],['Pike push-up','prep HSPU']],
+      Intermediate:[['Archer push-up','unilateral'],['Typewriter push-up','deslizar lateral'],['Pseudo planche push-up','manos a pies'],['Elevated pike push-up','+ROM'],['Hand holders push-up','paralelas'],['Korean dip','hombro post.']],
+      Advanced:[['One arm push-up','unilateral'],['90 degree push-up','planche lean']],
+      Extreme:[['Wall HSPU',''],['HSPU libre','objetivo']] }},
+    pull:{name:'Pull · Espalda', ex:{
+      Beginner:[['Dead hang activo','hombros activos'],['Scapular pull-up','depresión'],['Band pull-apart','retractores']],
+      Basic:[['Australian pull-up','row'],['Pull-up pronado','ancho/medio'],['Chin-up supinado','+bíceps'],['Neutral grip pull-up','']],
+      Intermediate:[['Explosive pull-up','chest-to-bar'],['Plyo pull-up','soltar barra'],['Feet elevated rows',''],['Archer pull-up','unilateral'],['L-sit pull-up','core+pull'],['Typewriter pull-up','lateral']],
+      Advanced:[['Weighted pull-up','con peso'],['Chest-to-bar pull-up','']],
+      Extreme:[['One arm chin-up (neg.)','eccentric'],['One arm chin-up','objetivo']] }},
+    core:{name:'Core', ex:{
+      Beginner:[['Plank',''],['Side plank','lateral'],['Dead bug','control lumbar'],['Hollow body hold','base de todo']],
+      Basic:[['Hollow rocks',''],['Toes to bar',''],['Butterfly sit-up',''],['Alternating tuck crunch',''],['Twisting tuck crunch',''],['V-ups',''],['Abs scissors',''],['Hanging knee raise',''],['Bar leg raises half','90°'],['Reverse extensions','cadera elevada']],
+      Intermediate:[['Bar leg raises full','rectas'],['Bar side tucks','laterales'],['L-sit','core+hombros'],['Tuck L-sit',''],['L-sit reps','dinámico'],['Pull the rope',''],['Pike compression','']],
+      Advanced:[['Dragon flag','']],
+      Extreme:[['V-sit','']] }},
+    legs:{name:'Legs', ex:{
+      Beginner:[['Sentadilla','forma'],['Lunge / Reverse lunge',''],['Calf raise bilateral','']],
+      Basic:[['Reverse Nordic curl','rodillas'],['Jump squat','explosivo']],
+      Intermediate:[['Bulgarian split squat',''],['Single leg deadlift',''],['Nordic curl',''],['Pistol squat (asistido)','clave'],['Box / Broad jump','potencia'],['Calf raise unilateral','']],
+      Advanced:[['Pistol squat (libre)','objetivo']],
+      Extreme:[['Dragon squat','']] }},
+  },
+  skills:[
+    {id:'handstand', name:'Handstand → HSPU', tag:'frecuencia > intensidad', prereq:'', support:'Practicá todos los días aunque sea poco.', steps:[['Crow / Frog stand','20s'],['Wall handstand','20–60s'],['Shoulder taps','3×8'],['Freestanding kick-up','10s'],['Wall HSPU','3×5'],['HSPU libre','1 rep']]},
+    {id:'muscleup', name:'Muscle-up', tag:'barra', prereq:'Prereq: 8–12 pull-ups + 10–15 dips.', support:'', steps:[['Pull-up explosivo','pecho a barra'],['Deep straight-bar dip','rango completo'],['Transition drill','banda/barra baja'],['Strict muscle-up','']]},
+    {id:'frontlever', name:'Front lever', tag:'', prereq:'Prereq: dead hang activo + scapular pull-ups.', support:'Apoyo: tempo pull-ups (5s ecc) — el mayor transfer.', steps:[['Scapular sets en FL','3×6–10'],['Tuck FL','3×10–15s'],['Advanced tuck FL','3×8–12s'],['One leg FL','3×6–10s'],['Straddle FL','3×5–8s'],['Full front lever','1×3–5s']]},
+    {id:'planche', name:'Planche', tag:'meses–años', prereq:'Prereq: planche lean 20s, serratus fuerte.', support:'Apoyo: pseudo planche push-ups + serratus. Paralelas mejor.', steps:[['Planche lean','3×15–25s'],['Tuck planche','3×8–15s'],['Advanced tuck planche','3×6–12s'],['Straddle planche','3×3–8s'],['Full planche','—']]},
+    {id:'lsit', name:'L-sit → V-sit', tag:'', prereq:'', support:'', steps:[['Tuck L-sit','3×15s'],['One leg L-sit','3×10s'],['L-sit','3×10s'],['V-sit','1×5s']]},
+    {id:'backlever', name:'Back lever', tag:'+accesible que FL', prereq:'', support:'', steps:[['Skin the cat','5 reps'],['German hang','3×10–20s'],['Tuck back lever','3×10s'],['One leg back lever','3×8s'],['Full back lever','3×5s']]},
+  ],
+  days:[
+    {id:uid(), name:'Lunes', focus:'Push + Handstand', areas:['push'], skill:'handstand', block:'Handstand: 4–5 sets del step × max hold (o 5–8 reps si dinámico). Chain: crow → wall HS → shoulder taps → kick-up.', ex:[['Dips en paralelas','4 × 8–10'],['Push-up (tu variante)','4 × 10–15'],['Pike push-up','3 × 8'],['Archer o Diamond','3 × 8']], nopark:'Dips → bench / chair dips.'},
+    {id:uid(), name:'Martes', focus:'Pull + Muscle-up', areas:['pull'], skill:'muscleup', block:'Muscle-up: 4–5 sets del step. Chain: explosive pull-up → chest-to-bar → transition drill.', ex:[['Pull-up pronado','4 × 6–8'],['Australian pull-up','3 × 10–12'],['Chin-up supinado','3 × 8'],['Archer pull-up','3 × 5 c/l']], nopark:'Inverted rows (mesa) o band rows. Sin nada → swap a Push+Core.'},
+    {id:uid(), name:'Miércoles', focus:'Core + Legs', areas:['core','legs'], skill:'', block:'', ex:[['Hollow body hold','4 × 30–40s'],['Tuck / L-sit','3 × 15–20s'],['Bar leg raises','3 × 10'],['Bar side tucks','3 × 10 c/l'],['Jump squat / sentadilla','4 × 12–15'],['Bulgarian split squat','3 × 10 c/p'],['Pistol squat prog.','3 × 5 c/p'],['Nordic curl','3 × 5']], nopark:'Bar leg raises → floor L-sit / tuck crunch.'},
+    {id:uid(), name:'Jueves', focus:'Push + Planche', areas:['push'], skill:'planche', block:'Planche: 4–5 sets del step × max hold. Chain: planche lean → tuck planche (5s) → L-sit descanso → repeat.', ex:[['Dips en paralelas','3 × 8'],['Push-up (tu variante)','3 × 12'],['Pseudo planche push-up','3 × 8'],['Elevated pike push-up','3 × 8']], nopark:'Bench / chair dips.'},
+    {id:uid(), name:'Viernes', focus:'Pull + Front Lever', areas:['pull'], skill:'frontlever', block:'Front lever: 4–5 sets × hold. Chain: scapular sets → tuck FL → adv tuck FL. Apoyo: tempo pull-ups (5s ecc).', ex:[['Pull-up pronado','3 × 6'],['Feet elevated rows','3 × 10'],['L-sit pull-up','3 × 5'],['Typewriter pull-up','3 × 5 c/l']], nopark:'Igual que martes sin barras.'},
+  ],
+  lvl:{push:'Intermediate', pull:'Intermediate', core:'Intermediate', legs:'Intermediate'},
+  step:{handstand:2, muscleup:1, frontlever:2, planche:1, lsit:1, backlever:1},
+  sessions:[], tray:{name:'', items:[]},
+};}
 
-const SKILLS = {
-  handstand:{ name:'Handstand → HSPU', tag:'frecuencia > intensidad', note:'Practicá todos los días aunque sea poco.', steps:[
-    ['Crow pose / Frog stand','20s'],['Wall handstand','20–60s'],['Shoulder taps en pared','3×8'],['Freestanding kick-up','10s balanceado'],['Wall HSPU','3×5'],['HSPU libre','1 rep'] ]},
-  muscleup:{ name:'Muscle-up', tag:'barra', prereq:'Prereq: 8–12 pull-ups estrictas + 10–15 dips en rango completo.', steps:[
-    ['Pull-up explosivo','pecho a la barra'],['Deep straight-bar dip','rango completo'],['Transition drill','banda o barra baja'],['Strict muscle-up',''] ]},
-  frontlever:{ name:'Front lever', prereq:'Prereq: dead hang activo + scapular pull-ups sólidos.', support:'Apoyo: tempo pull-ups (5s eccentric) y weighted pull-ups — el mayor transfer al FL.', steps:[
-    ['Scapular sets en FL position','3×6–10'],['Tuck front lever','3×10–15s'],['Advanced tuck FL','3×8–12s'],['One leg FL','3×6–10s'],['Straddle FL','3×5–8s'],['Full front lever','1×3–5s'] ]},
-  planche:{ name:'Planche', tag:'long game · meses-años', prereq:'Prereq: straight-arm base (planche lean 20s, serratus fuerte).', support:'Apoyo: pseudo planche push-ups + serratus. En paralelas/manillas: mejor muñecas y ROM.', steps:[
-    ['Planche lean','3×15–25s'],['Tuck planche / Frog','3×8–15s'],['Advanced tuck planche','3×6–12s'],['Straddle planche','3×3–8s'],['Full planche','—'] ]},
-  lsit:{ name:'L-sit → V-sit', steps:[
-    ['Tuck L-sit','3×15s'],['One leg L-sit','3×10s c/lado'],['L-sit (piernas rectas)','3×10s'],['V-sit','1×5s'] ]},
-  backlever:{ name:'Back lever', tag:'más accesible que FL', steps:[
-    ['Skin the cat','5 reps controladas'],['German hang','3×10–20s'],['Tuck back lever','3×10s'],['One leg back lever','3×8s'],['Full back lever','3×5s'] ]},
-};
-
-const DAYS = [
-  { d:'Lunes', focus:'Push + Handstand', area:'push', skill:'handstand',
-    block:'Handstand: 4–5 sets del step actual × max hold limpio (o 5–8 reps si es dinámico). Chain: crow → wall handstand → shoulder taps → freestanding kick-up. Bandas solo al final.',
-    hyper:[['Dips en paralelas','4 × 8–10'],['Push-up (tu variante)','4 × 10–15'],['Pike push-up','3 × 8'],['Archer o Diamond push-up','3 × 8']],
-    nopark:'Dips → bench / chair dips. Todo lo demás igual.' },
-  { d:'Martes', focus:'Pull + Muscle-up', area:'pull', skill:'muscleup',
-    block:'Muscle-up: 4–5 sets del step actual. Chain: explosive pull-up → chest-to-bar → transition drill (repetition method). Bandas solo al final.',
-    hyper:[['Pull-up pronado','4 × 6–8'],['Australian pull-up','3 × 10–12'],['Chin-up supinado','3 × 8'],['Archer pull-up','3 × 5 c/lado']],
-    nopark:'Inverted rows (mesa firme) o band rows. Sin nada → swap a Push + Core del viernes.' },
-  { d:'Miércoles', focus:'Core + Legs', area:'core', skill:null,
-    block:null,
-    core:[['Hollow body hold','4 × 30–40s'],['Tuck L-sit o L-sit','3 × 15–20s'],['Bar leg raises','3 × 10'],['Bar side tucks','3 × 10 c/lado']],
-    hyper:[['Jump squat o sentadilla','4 × 12–15'],['Bulgarian split squat','3 × 10 c/pierna'],['Pistol squat progression','3 × 5 c/pierna'],['Nordic curl','3 × 5']],
-    legsArea:'legs',
-    nopark:'Bar leg raises → floor L-sit o tuck crunch. Legs no necesita barras.' },
-  { d:'Jueves', focus:'Push + Planche', area:'push', skill:'planche',
-    block:'Planche: 4–5 sets del step actual × max hold. Chain: planche lean → tuck planche (5s) → L-sit como descanso activo → repeat. En paralelas/manillas si hay. Bandas solo al final.',
-    hyper:[['Dips en paralelas','3 × 8'],['Push-up (tu variante)','3 × 12'],['Pseudo planche push-up','3 × 8'],['Elevated pike push-up','3 × 8']],
-    nopark:'Bench / chair dips. Todo lo demás igual.' },
-  { d:'Viernes', focus:'Pull + Front Lever', area:'pull', skill:'frontlever',
-    block:'Front lever: 4–5 sets del step actual × hold. Chain: scapular sets en FL → tuck FL → advanced tuck FL. Apoyo: tempo pull-ups (5s eccentric) en paralelo.',
-    hyper:[['Pull-up pronado','3 × 6'],['Feet elevated rows','3 × 10'],['L-sit pull-up','3 × 5'],['Typewriter pull-up','3 × 5 c/lado']],
-    nopark:'Igual que martes sin barras.' },
-];
-
-const FUND = [
-  ['Push-up estricto','3–5 × 8–15'],['Pull-up estricto','25–50 total / sesión'],
-  ['Scapular pull-up','2–3 × 8–12'],['Scapular push-up','2–3 × 8–12'],
-  ['Hollow body hold','60–120s total'],['Active hang','20–40s'],['Support hold (paralelas)','20–40s'],
-];
-
-/* ---- state ---- */
-const KEY = 'training-state-v1';
-const DEFAULT = { lvl:{push:'Intermediate', pull:'Intermediate', core:'Intermediate', legs:'Intermediate'},
-                  step:{handstand:2, muscleup:1, frontlever:2, planche:1, lsit:1, backlever:1} };
+/* ---------- state ---------- */
+const KEY='training-v2';
 let S;
-try{ S = Object.assign({}, DEFAULT, JSON.parse(localStorage.getItem(KEY)||'{}')); S.lvl=Object.assign({},DEFAULT.lvl,S.lvl); S.step=Object.assign({},DEFAULT.step,S.step); }
-catch(e){ S = JSON.parse(JSON.stringify(DEFAULT)); }
-function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
-const esc = s => String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+try{ const raw=JSON.parse(localStorage.getItem(KEY)); S = (raw && raw.areas) ? raw : SEED(); }
+catch(e){ S = SEED(); }
+if(!S.tray) S.tray={name:'',items:[]}; if(!S.sessions) S.sessions=[];
+const save = () => localStorage.setItem(KEY, JSON.stringify(S));
 
-/* ---- header level chips ---- */
-function renderLevels(){
-  const order=['push','pull','core','legs'];
-  document.getElementById('levels').innerHTML =
-    order.map(a=>`<button class="lvlchip" data-area="${a}"><b>${AREAS[a].name.split(' ')[0]}</b> <span class="v">${esc(S.lvl[a])}</span></button>`).join('')
-    + `<span class="lvlhint">← tocá para ajustar tu nivel</span>`;
+/* ---------- modal form ---------- */
+const dlg=document.getElementById('dlg'), dform=document.getElementById('dlg-form');
+let onSubmit=null;
+function openForm(title, fields, cb){
+  onSubmit=cb;
+  dform.innerHTML = `<h3>${esc(title)}</h3>` + fields.map(f=>{
+    const id='f_'+f.key;
+    if(f.type==='textarea') return `<div class="fld"><label for="${id}">${esc(f.label)}</label><textarea id="${id}">${esc(f.value||'')}</textarea></div>`;
+    if(f.type==='select') return `<div class="fld"><label for="${id}">${esc(f.label)}</label><select id="${id}">${f.options.map(o=>`<option value="${esc(o.v)}" ${o.v===f.value?'selected':''}>${esc(o.t)}</option>`).join('')}</select></div>`;
+    if(f.type==='checks') return `<div class="fld"><label>${esc(f.label)}</label><div class="checks">${f.options.map(o=>`<label><input type="checkbox" value="${esc(o.v)}" ${(f.value||[]).includes(o.v)?'checked':''}>${esc(o.t)}</label>`).join('')}</div></div>`;
+    return `<div class="fld"><label for="${id}">${esc(f.label)}</label><input id="${id}" value="${esc(f.value||'')}" placeholder="${esc(f.ph||'')}"></div>`;
+  }).join('') + `<div class="modal-actions"><button type="button" data-x="cancel">Cancelar</button><button type="submit" class="save">Guardar</button></div>`;
+  dform._fields=fields;
+  dlg.showModal();
+}
+dform.addEventListener('submit', e=>{
+  const vals={};
+  (dform._fields||[]).forEach(f=>{
+    const el=document.getElementById('f_'+f.key);
+    if(f.type==='checks') vals[f.key]=[...el.querySelectorAll('input:checked')].map(i=>i.value);
+    else vals[f.key]=el.value.trim();
+  });
+  dlg.close(); if(onSubmit) onSubmit(vals);
+});
+dform.addEventListener('click', e=>{ if(e.target.dataset.x==='cancel'){ e.preventDefault(); dlg.close(); } });
+
+let toastT;
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1500); }
+
+/* ---------- helpers ---------- */
+const areaKeys = () => Object.keys(S.areas);
+const skillById = id => S.skills.find(s=>s.id===id);
+const curLevelEx = a => { const l=S.lvl[a]||'Intermediate'; return `${l} · ${(S.areas[a].ex[l]||[]).length} ej.`; };
+function curStepTxt(id){ const s=skillById(id); if(!s||!s.steps.length) return '—'; const n=Math.min(S.step[id]||1, s.steps.length); return `paso ${n}/${s.steps.length}`; }
+
+/* ---------- header ---------- */
+function renderHeader(){
+  document.getElementById('hdr-title').innerHTML = `${esc(S.title)} <span>· ${esc(S.subtitle)}</span> ✎`;
+  document.getElementById('levels').innerHTML = areaKeys().map(a=>
+    `<button class="lvlchip" data-act="set-level" data-area="${a}"><b>${esc(S.areas[a].name.split(' ')[0])}</b> <span class="v">${esc(S.lvl[a]||'—')}</span></button>`).join('')
+    + `<span class="lvlchip" style="cursor:default;border:none;color:var(--ink-soft)">← tu nivel</span>`;
 }
 
-/* ---- exercises ---- */
+/* ---------- split ---------- */
+function renderSplit(){
+  document.getElementById('habit').innerHTML = S.habit;
+  document.getElementById('days').innerHTML = S.days.map(d=>{
+    const live = d.areas.map(a=>`<span class="lp"><b>${esc(S.areas[a]?S.areas[a].name.split(' ')[0]:a)}</b> ${esc(S.lvl[a]||'—')}</span>`).join('')
+      + (d.skill&&skillById(d.skill)?`<span class="lp"><b>${esc(skillById(d.skill).name.split(' ')[0])}</b> ${esc(curStepTxt(d.skill))}</span>`:'');
+    const exRows = d.ex.map((x,i)=>`<tr><td>${esc(x[0])}</td><td class="num">${esc(x[1])}</td><td class="act"><span class="acts"><button class="ib" data-act="dex-edit" data-day="${d.id}" data-i="${i}" title="editar">✎</button><button class="ib d" data-act="dex-del" data-day="${d.id}" data-i="${i}" title="borrar">✕</button></span></td></tr>`).join('');
+    return `<details class="day"><summary class="day-sum"><div class="sum-main"><div class="sum-name">${esc(d.name)}</div><div class="sum-focus">${esc(d.focus)}</div><div class="sum-live">${live}</div></div></summary>
+      <div class="day-body">
+        ${d.block?`<div class="block-lab">Skill block · 20–30′ · desc 5–8′</div><div class="skillblock">${esc(d.block)}</div>`:''}
+        <div class="block-lab">Trabajo · 20–25′ · desc 1–3′</div>
+        <table>${exRows}</table>
+        <button class="addbtn" data-act="dex-add" data-day="${d.id}" type="button">+ ejercicio</button>
+        ${d.nopark?`<p class="nopark"><b>sin parque:</b> ${esc(d.nopark)}</p>`:''}
+        <div class="day-tools"><button data-act="day-edit" data-day="${d.id}">editar día</button><button class="d" data-act="day-del" data-day="${d.id}">borrar día</button></div>
+      </div></details>`;
+  }).join('');
+}
+
+/* ---------- ejercicios ---------- */
+let curArea = null;
 function renderAreas(){
-  const nav=document.getElementById('area-nav');
-  const keys=Object.keys(AREAS);
-  nav.innerHTML = keys.map((a,i)=>`<button data-area="${a}" class="${i===0?'on':''}">${AREAS[a].name}</button>`).join('');
-  document.getElementById('areas').innerHTML = keys.map((a,i)=>{
+  const keys=areaKeys(); if(!curArea||!S.areas[curArea]) curArea=keys[0];
+  document.getElementById('area-nav').innerHTML = keys.map(a=>`<button data-act="area" data-area="${a}" class="${a===curArea?'on':''}">${esc(S.areas[a].name)}</button>`).join('');
+  document.getElementById('areas').innerHTML = keys.map(a=>{
+    if(a!==curArea) return `<div class="area-sec" data-area="${a}"></div>`;
     const groups = LEVELS.map((lv,li)=>{
-      const list = AREAS[a].ex[lv]||[];
-      if(!list.length) return '';
-      const cur = S.lvl[a]===lv;
-      const meter = LEVELS.map((_,mi)=>`<i class="${mi<=li?'f':''}"></i>`).join('');
-      const rows = list.map(([n,note])=>`<div class="ex"><span class="exn">${esc(n)}</span>${note?`<span class="exnote">${esc(note)}</span>`:''}</div>`).join('');
-      return `<div class="lvl-group ${cur?'cur':''}" data-area="${a}" data-lvl="${lv}">
-        <div class="lvl-head"><span class="name">${lv}</span><span class="meter">${meter}</span>
-        ${cur?'<span class="youbadge">TU NIVEL</span>':`<button class="setlvl" data-area="${a}" data-lvl="${lv}">marcar como mi nivel</button>`}</div>
-        ${rows}</div>`;
+      const list=S.areas[a].ex[lv]||[]; const cur=S.lvl[a]===lv;
+      const meter=LEVELS.map((_,mi)=>`<i class="${mi<=li?'f':''}"></i>`).join('');
+      const rows=list.map((x,i)=>`<div class="ex"><span class="exn">${esc(x[0])}</span>${x[1]?`<span class="exnote">${esc(x[1])}</span>`:''}<span class="acts"><button class="ib" data-act="ex-tray" data-area="${a}" data-lvl="${lv}" data-i="${i}" title="a Armar">+</button><button class="ib" data-act="ex-edit" data-area="${a}" data-lvl="${lv}" data-i="${i}" title="editar">✎</button><button class="ib d" data-act="ex-del" data-area="${a}" data-lvl="${lv}" data-i="${i}" title="borrar">✕</button></span></div>`).join('');
+      return `<div class="lvl-group ${cur?'cur':''}"><div class="lvl-head"><span class="name">${lv}</span><span class="meter">${meter}</span>${cur?'<span class="youbadge">TU NIVEL</span>':`<button class="setlvl" data-act="ex-setlvl" data-area="${a}" data-lvl="${lv}">marcar nivel</button>`}</div>${rows}<button class="addbtn" data-act="ex-add" data-area="${a}" data-lvl="${lv}" type="button">+ ejercicio en ${lv}</button></div>`;
     }).join('');
-    return `<div class="area-sec ${i===0?'on':''}" data-area="${a}">${groups}</div>`;
+    return `<div class="area-sec on" data-area="${a}">${groups}</div>`;
   }).join('');
 }
 
-/* ---- skills ---- */
+/* ---------- skills ---------- */
+let curSkill = null;
 function renderSkills(){
-  const nav=document.getElementById('skill-nav');
-  const keys=Object.keys(SKILLS);
-  nav.innerHTML = keys.map(k=>`<button data-jump="sk-${k}">${SKILLS[k].name}</button>`).join('');
-  document.getElementById('skills-list').innerHTML = keys.map(k=>{
-    const sk=SKILLS[k], cur=S.step[k];
-    const steps = sk.steps.map((st,i)=>{
-      const n=i+1, cls = n===cur?'cur':(n<cur?'done':'');
-      return `<div class="step ${cls}" data-skill="${k}" data-step="${n}">
-        <div class="st-top"><span class="st-name"><span class="st-n">${n}</span>${esc(st[0])}</span><span class="st-target">${esc(st[1])}</span></div>
-        <div class="here">← estás acá</div></div>`;
-    }).join('');
-    return `<div class="skill" id="sk-${k}">
-      <div class="skill-head"><h3>${esc(sk.name)}</h3>${sk.tag?`<span class="tag">${esc(sk.tag)}</span>`:''}</div>
-      ${sk.prereq?`<p class="prereq">${esc(sk.prereq)}</p>`:''}
-      <div class="ladder">${steps}</div>
-      ${sk.support?`<p class="support">${esc(sk.support)}</p>`:''}
-      ${sk.note?`<p class="support">${esc(sk.note)}</p>`:''}
-    </div>`;
+  if(!curSkill||!skillById(curSkill)) curSkill=S.skills[0]?S.skills[0].id:null;
+  document.getElementById('skill-nav').innerHTML = S.skills.map(s=>`<button data-act="skill-pick" data-skill="${s.id}" class="${s.id===curSkill?'on':''}">${esc(s.name)}</button>`).join('')
+    + `<button class="add" data-act="skill-add">+ nueva</button>`;
+  const s=skillById(curSkill);
+  if(!s){ document.getElementById('skill-view').innerHTML=`<p class="page-sub">Sin skills. Agregá una.</p>`; return; }
+  const steps=s.steps.map((st,i)=>{ const n=i+1, cls=n===S.step[s.id]?'cur':(n<(S.step[s.id]||1)?'done':'');
+    return `<div class="step ${cls}"><div class="body" data-act="step-here" data-skill="${s.id}" data-step="${n}"><div class="st-top"><span class="st-name"><span class="st-n">${n}</span>${esc(st[0])}</span><span class="st-target">${esc(st[1])}</span></div><div class="here">← estás acá</div></div><span class="acts"><button class="ib" data-act="step-tray" data-skill="${s.id}" data-i="${i}" title="a Armar">+</button><button class="ib" data-act="step-edit" data-skill="${s.id}" data-i="${i}" title="editar">✎</button><button class="ib d" data-act="step-del" data-skill="${s.id}" data-i="${i}" title="borrar">✕</button></span></div>`;
   }).join('');
+  document.getElementById('skill-view').innerHTML =
+    `<div class="skill-head"><h3>${esc(s.name)}</h3>${s.tag?`<span class="tag">${esc(s.tag)}</span>`:''}<span class="acts"><button class="ib" data-act="skill-edit" data-skill="${s.id}" title="editar skill">✎</button><button class="ib d" data-act="skill-del" data-skill="${s.id}" title="borrar skill">✕</button></span></div>
+     ${s.prereq?`<p class="prereq">${esc(s.prereq)}</p>`:''}
+     <div class="ladder">${steps}</div>
+     <button class="addbtn" data-act="step-add" data-skill="${s.id}" type="button">+ paso</button>
+     ${s.support?`<p class="support">${esc(s.support)}</p>`:''}`;
 }
 
-/* ---- split days ---- */
-function curEx(area){ const list=AREAS[area].ex[S.lvl[area]]||[]; return `${S.lvl[area]} · ${list.length} ejercicios`; }
-function curStep(skill){ const s=SKILLS[skill], n=S.step[skill]; const st=s.steps[n-1]; return `Paso ${n}/${s.steps.length} · ${st[0]}`; }
-function table(rows){ return `<table><tr><th>Ejercicio</th><th class="num">Series × Reps</th></tr>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td class="num">${esc(r[1])}</td></tr>`).join('')}</table>`; }
-function renderDays(){
-  document.getElementById('days').innerHTML = DAYS.map(day=>{
-    let live = `<span class="pill"><b>${AREAS[day.area].name.split(' ')[0]}:</b> <span class="v">${esc(curEx(day.area))}</span></span>`;
-    if(day.skill) live += `<span class="pill"><b>${SKILLS[day.skill].name.split(' ')[0]}:</b> <span class="v">${esc(curStep(day.skill))}</span></span>`;
-    if(day.legsArea) live += `<span class="pill"><b>Legs:</b> <span class="v">${esc(curEx(day.legsArea))}</span></span>`;
-    let body='';
-    if(day.block) body += `<div class="block-lab">Skill block · 20–30 min · descanso 5–8 min</div><div class="skillblock">${esc(day.block)}</div>`;
-    if(day.core){ body += `<div class="block-lab">Core · 25 min</div>${table(day.core)}`; body += `<div class="block-lab">Legs · 20 min</div>${table(day.hyper)}`; }
-    else { body += `<div class="block-lab">Hipertrofia · 20–25 min · descanso 1–3 min</div>${table(day.hyper)}`; }
-    return `<div class="day"><div class="day-top"><span class="dname">${day.d}</span><span class="dfocus">${esc(day.focus)}</span></div>
-      <div class="liveline">${live}</div>${body}
-      <p class="nopark"><b>sin parque:</b> ${esc(day.nopark)}</p></div>`;
-  }).join('');
+/* ---------- armar ---------- */
+function renderArmar(){
+  const t=S.tray;
+  const items = t.items.length ? t.items.map((it,i)=>`<div class="trow"><span class="tk">${it.type==='skill'?'skill':'ej.'}</span><div class="tl"><div class="tn">${esc(it.label)}</div>${it.sub?`<div class="ts">${esc(it.sub)}</div>`:''}</div><button class="ib d" data-act="tray-del" data-i="${i}" title="quitar">✕</button></div>`).join('')
+    : `<div class="tray-empty">Vacío. Sumá ejercicios o skills con el botón + en sus pestañas.</div>`;
+  document.getElementById('tray').innerHTML = `<h3>Sesión en armado</h3>
+    <input class="nm" id="tray-name" placeholder="Nombre de la sesión…" value="${esc(t.name)}">
+    ${items}
+    <div class="tray-actions"><button class="btn pri" data-act="session-save" ${t.items.length?'':'disabled'}>guardar sesión</button><button class="btn gho" data-act="tray-clear">limpiar</button></div>`;
+  document.getElementById('saved').innerHTML = S.sessions.length ? S.sessions.map(se=>
+    `<div class="saved"><div class="saved-top"><span class="sn">${esc(se.name)}</span><span class="acts"><button class="ib d" data-act="session-del" data-id="${se.id}" title="borrar">✕</button></span></div><ul>${se.items.map(it=>`<li>${esc(it.label)}${it.sub?` <span style="opacity:.7">· ${esc(it.sub)}</span>`:''}</li>`).join('')}</ul></div>`
+  ).join('') : `<p class="page-sub" style="margin:0;">Todavía no guardaste ninguna sesión propia.</p>`;
+  const ni=document.getElementById('tray-name'); if(ni) ni.addEventListener('input', e=>{ S.tray.name=e.target.value; save(); });
 }
 
-/* ---- fundamentos ---- */
-function renderFund(){
-  document.getElementById('fund-table').innerHTML =
-    `<tr><th>Ejercicio</th><th class="num">Target</th></tr>` +
-    FUND.map(f=>`<tr><td>${esc(f[0])}</td><td class="num">${esc(f[1])}</td></tr>`).join('');
-}
+function addToTray(item){ S.tray.items.push(item); save(); renderArmar(); toast('Agregado a Armar'); }
 
-/* ---- level dialog ---- */
-const dlg=document.getElementById('lvl-dialog');
-function openLvl(area){
-  document.getElementById('dlg-title').textContent = `Tu nivel · ${AREAS[area].name}`;
-  document.getElementById('dlg-opts').innerHTML = LEVELS.map(lv=>{
-    const n=(AREAS[area].ex[lv]||[]).length;
-    return `<button data-pick="${lv}" class="${S.lvl[area]===lv?'sel':''}">${lv}<span>${n} ej.</span></button>`;
-  }).join('');
-  dlg.dataset.area=area; dlg.showModal();
-}
-dlg.addEventListener('click', e=>{
-  const b=e.target.closest('[data-pick]'); if(!b){ if(e.target===dlg) dlg.close(); return; }
-  S.lvl[dlg.dataset.area]=b.dataset.pick; save(); dlg.close(); refresh();
-});
+function refresh(){ renderHeader(); renderSplit(); renderAreas(); renderSkills(); renderArmar(); }
 
-/* ---- events ---- */
-document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));
-  const t=b.dataset.tab;
-  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===t));
-  window.scrollTo({top:0,behavior:'instant'});
-}));
+/* ---------- events ---------- */
 document.body.addEventListener('click', e=>{
-  const chip=e.target.closest('.lvlchip'); if(chip){ openLvl(chip.dataset.area); return; }
-  const set=e.target.closest('.setlvl'); if(set){ S.lvl[set.dataset.area]=set.dataset.lvl; save(); refresh(); return; }
-  const anav=e.target.closest('#area-nav button'); if(anav){
-    document.querySelectorAll('#area-nav button').forEach(x=>x.classList.toggle('on',x===anav));
-    document.querySelectorAll('#areas .area-sec').forEach(s=>s.classList.toggle('on',s.dataset.area===anav.dataset.area)); return; }
-  const snav=e.target.closest('#skill-nav button'); if(snav){ document.getElementById(snav.dataset.jump).scrollIntoView({behavior:'smooth',block:'start'}); return; }
-  const step=e.target.closest('.step'); if(step){ S.step[step.dataset.skill]=+step.dataset.step; save(); renderSkills(); renderDays(); return; }
-  if(e.target.id==='reset-state'){ if(confirm('¿Restablecer tu nivel y pasos a los valores por defecto?')){ S=JSON.parse(JSON.stringify(DEFAULT)); save(); refresh(); } }
+  const el=e.target.closest('[data-act]'); if(!el) return; const a=el.dataset.act, D=el.dataset;
+  switch(a){
+    case 'tab':
+      document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('on', b===el));
+      document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on', p.id===D.tab));
+      window.scrollTo({top:0,behavior:'instant'}); break;
+    case 'edit-title':
+      openForm('Editar encabezado', [{key:'title',label:'Título',value:S.title},{key:'subtitle',label:'Subtítulo',value:S.subtitle}], v=>{ S.title=v.title||'Training'; S.subtitle=v.subtitle; save(); renderHeader(); }); break;
+    case 'set-level': {
+      const ar=D.area; openForm('Tu nivel · '+S.areas[ar].name, [{key:'lvl',label:'Nivel',type:'select',value:S.lvl[ar],options:LEVELS.map(l=>({v:l,t:`${l} (${(S.areas[ar].ex[l]||[]).length} ej.)`}))}], v=>{ S.lvl[ar]=v.lvl; save(); refresh(); }); break; }
+    case 'ex-setlvl': S.lvl[D.area]=D.lvl; save(); refresh(); break;
+    case 'area': curArea=D.area; renderAreas(); break;
+    case 'ex-tray': { const x=S.areas[D.area].ex[D.lvl][D.i]; addToTray({type:'ex',label:x[0],sub:`${S.areas[D.area].name.split(' ')[0]} · ${D.lvl}`}); break; }
+    case 'ex-add': openForm('Nuevo ejercicio · '+D.lvl, [{key:'n',label:'Nombre'},{key:'note',label:'Nota (opcional)'}], v=>{ if(!v.n) return; S.areas[D.area].ex[D.lvl].push([v.n,v.note]); save(); renderAreas(); }); break;
+    case 'ex-edit': { const x=S.areas[D.area].ex[D.lvl][D.i]; openForm('Editar ejercicio', [{key:'n',label:'Nombre',value:x[0]},{key:'note',label:'Nota',value:x[1]}], v=>{ if(!v.n) return; S.areas[D.area].ex[D.lvl][D.i]=[v.n,v.note]; save(); renderAreas(); }); break; }
+    case 'ex-del': if(confirm('¿Borrar este ejercicio?')){ S.areas[D.area].ex[D.lvl].splice(D.i,1); save(); renderAreas(); } break;
+
+    case 'skill-pick': curSkill=D.skill; renderSkills(); break;
+    case 'step-here': S.step[D.skill]=+D.step; save(); renderSkills(); renderSplit(); break;
+    case 'step-tray': { const s=skillById(D.skill), st=s.steps[D.i]; addToTray({type:'skill',label:`${s.name.split(' ')[0]}: ${st[0]}`,sub:st[1]}); break; }
+    case 'step-add': openForm('Nuevo paso', [{key:'n',label:'Ejercicio'},{key:'t',label:'Target'}], v=>{ if(!v.n) return; skillById(D.skill).steps.push([v.n,v.t]); save(); renderSkills(); }); break;
+    case 'step-edit': { const st=skillById(D.skill).steps[D.i]; openForm('Editar paso', [{key:'n',label:'Ejercicio',value:st[0]},{key:'t',label:'Target',value:st[1]}], v=>{ if(!v.n) return; skillById(D.skill).steps[D.i]=[v.n,v.t]; save(); renderSkills(); }); break; }
+    case 'step-del': if(confirm('¿Borrar este paso?')){ skillById(D.skill).steps.splice(D.i,1); const s=skillById(D.skill); if(S.step[D.skill]>s.steps.length) S.step[D.skill]=Math.max(1,s.steps.length); save(); renderSkills(); } break;
+    case 'skill-add': openForm('Nueva skill', [{key:'name',label:'Nombre'},{key:'tag',label:'Etiqueta (opcional)'},{key:'prereq',label:'Prereq (opcional)'},{key:'support',label:'Apoyo / nota',type:'textarea'}], v=>{ if(!v.name) return; const id='sk_'+uid(); S.skills.push({id,name:v.name,tag:v.tag,prereq:v.prereq,support:v.support,steps:[]}); S.step[id]=1; curSkill=id; save(); renderSkills(); }); break;
+    case 'skill-edit': { const s=skillById(D.skill); openForm('Editar skill', [{key:'name',label:'Nombre',value:s.name},{key:'tag',label:'Etiqueta',value:s.tag},{key:'prereq',label:'Prereq',value:s.prereq},{key:'support',label:'Apoyo / nota',type:'textarea',value:s.support}], v=>{ if(!v.name) return; Object.assign(s,{name:v.name,tag:v.tag,prereq:v.prereq,support:v.support}); save(); renderSkills(); }); break; }
+    case 'skill-del': if(confirm('¿Borrar esta skill?')){ S.skills=S.skills.filter(x=>x.id!==D.skill); curSkill=null; save(); renderSkills(); renderSplit(); } break;
+
+    case 'day-add': openDayForm(null); break;
+    case 'day-edit': openDayForm(D.day); break;
+    case 'day-del': if(confirm('¿Borrar este día?')){ S.days=S.days.filter(x=>x.id!==D.day); save(); renderSplit(); } break;
+    case 'dex-add': openForm('Nuevo ejercicio', [{key:'n',label:'Ejercicio'},{key:'s',label:'Series × Reps'}], v=>{ if(!v.n) return; S.days.find(x=>x.id===D.day).ex.push([v.n,v.s]); save(); renderSplit(); }); break;
+    case 'dex-edit': { const x=S.days.find(x=>x.id===D.day).ex[D.i]; openForm('Editar ejercicio', [{key:'n',label:'Ejercicio',value:x[0]},{key:'s',label:'Series × Reps',value:x[1]}], v=>{ if(!v.n) return; S.days.find(x=>x.id===D.day).ex[D.i]=[v.n,v.s]; save(); renderSplit(); }); break; }
+    case 'dex-del': if(confirm('¿Borrar ejercicio?')){ S.days.find(x=>x.id===D.day).ex.splice(D.i,1); save(); renderSplit(); } break;
+
+    case 'tray-del': S.tray.items.splice(D.i,1); save(); renderArmar(); break;
+    case 'tray-clear': S.tray={name:'',items:[]}; save(); renderArmar(); break;
+    case 'session-save': if(S.tray.items.length){ S.sessions.unshift({id:uid(),name:S.tray.name||('Sesión '+(S.sessions.length+1)),items:S.tray.items}); S.tray={name:'',items:[]}; save(); renderArmar(); toast('Sesión guardada'); } break;
+    case 'session-del': if(confirm('¿Borrar esta sesión?')){ S.sessions=S.sessions.filter(x=>x.id!==D.id); save(); renderArmar(); } break;
+
+    case 'restore': if(confirm('¿Restaurar todo a los valores por defecto? Perdés tus ediciones y sesiones.')){ S=SEED(); curArea=null; curSkill=null; save(); refresh(); } break;
+  }
 });
 
-function refresh(){ renderLevels(); renderAreas(); renderSkills(); renderDays(); }
-renderLevels(); renderAreas(); renderSkills(); renderDays(); renderFund();
+function openDayForm(id){
+  const d = id ? S.days.find(x=>x.id===id) : {name:'',focus:'',areas:[],skill:'',block:'',nopark:'',ex:[]};
+  openForm(id?'Editar día':'Nuevo día', [
+    {key:'name',label:'Día',value:d.name,ph:'Lunes'},
+    {key:'focus',label:'Foco',value:d.focus,ph:'Push + Handstand'},
+    {key:'areas',label:'Áreas (para tu nivel)',type:'checks',value:d.areas,options:areaKeys().map(k=>({v:k,t:S.areas[k].name.split(' ')[0]}))},
+    {key:'skill',label:'Skill del día',type:'select',value:d.skill,options:[{v:'',t:'(ninguna)'}].concat(S.skills.map(s=>({v:s.id,t:s.name})))},
+    {key:'block',label:'Skill block (opcional)',type:'textarea',value:d.block},
+    {key:'nopark',label:'Sin parque (opcional)',type:'textarea',value:d.nopark},
+  ], v=>{
+    if(!v.name && !v.focus) return;
+    if(id){ Object.assign(d,{name:v.name,focus:v.focus,areas:v.areas,skill:v.skill,block:v.block,nopark:v.nopark}); }
+    else { S.days.push({id:uid(),name:v.name,focus:v.focus,areas:v.areas,skill:v.skill,block:v.block,nopark:v.nopark,ex:[]}); }
+    save(); renderSplit();
+  });
+}
+
+refresh();
 </script>
 </body>
 </html>
